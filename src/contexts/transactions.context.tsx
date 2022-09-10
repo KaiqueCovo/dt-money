@@ -10,6 +10,7 @@ import {
 
 interface TransactionsContextType {
   transactions: Transaction[];
+  fetchTransactions: (query?: string) => void;
 }
 
 export const TransactionsContext = createContext({} as TransactionsContextType);
@@ -21,18 +22,18 @@ interface TransactionsProviderProps {
 export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
-  async function loadTransactions() {
-    const transactions = await transactionService.fetchAllTransactions();
+  async function fetchTransactions(query?: string) {
+    const transactions = await transactionService.fetchAllTransactions(query);
 
     setTransactions(transactions);
   }
 
   useEffect(() => {
-    loadTransactions();
+    fetchTransactions();
   }, []);
 
   return (
-    <TransactionsContext.Provider value={{ transactions }}>
+    <TransactionsContext.Provider value={{ transactions, fetchTransactions }}>
       {children}
     </TransactionsContext.Provider>
   );
