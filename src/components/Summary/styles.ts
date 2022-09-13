@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 export const SummaryContainer = styled.section`
   position: relative;
@@ -16,11 +16,11 @@ export const SummaryContainer = styled.section`
 `;
 
 interface SummaryCardProps {
-  variant?: "green";
+  variant?: 'green';
 }
 
 export const SummaryCard = styled.div<SummaryCardProps>`
-  background-color: ${(props) => props.theme["gray-600"]};
+  background-color: ${(props) => props.theme['gray-600']};
   border-radius: 6px;
   padding: 2rem;
 
@@ -28,7 +28,7 @@ export const SummaryCard = styled.div<SummaryCardProps>`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: ${(props) => props.theme["gray-300"]};
+    color: ${(props) => props.theme['gray-300']};
   }
 
   strong {
@@ -38,16 +38,16 @@ export const SummaryCard = styled.div<SummaryCardProps>`
   }
 
   ${(props) =>
-    props.variant === "green" &&
+    props.variant === 'green' &&
     css`
-      background-color: ${(props) => props.theme["green-700"]};
+      background-color: ${(props) => props.theme['green-700']};
     `}
 `;
 
 export const NewTransactionButton = styled.button`
   height: 50px;
   border: 0;
-  background: ${(props) => props.theme["green-500"]};
+  background: ${(props) => props.theme['green-500']};
   color: ${(props) => props.theme.white};
   font-weight: bold;
 
@@ -58,6 +58,6 @@ export const NewTransactionButton = styled.button`
   transition: background-color 0.2s;
 
   &:hover {
-    background-color: ${(props) => props.theme["green-700"]};
+    background-color: ${(props) => props.theme['green-700']};
   }
 `;

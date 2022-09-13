@@ -15,6 +15,14 @@
       "category": "Alimentação",
       "price": 50,
       "createdAt": "2022-09-06T01:04:46.854Z"
+    },
+    {
+      "description": "meu site",
+      "price": 10000,
+      "category": "Alimentação",
+      "type": "income",
+      "createdAt": "2022-09-13T22:04:29.990Z",
+      "id": "t3xUSod"
     }
   ]
 }

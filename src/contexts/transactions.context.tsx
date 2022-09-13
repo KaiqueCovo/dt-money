@@ -1,16 +1,12 @@
-import { Transaction } from "@/models";
-import { transactionService } from "@/services";
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, ReactNode, useEffect, useState } from 'react';
+
+import { Transaction } from '@/models';
+import { transactionService, CreateTransactionDTO } from '@/services';
 
 interface TransactionsContextType {
   transactions: Transaction[];
   fetchTransactions: (query?: string) => void;
+  createTransaction: (data: CreateTransactionDTO) => void;
 }
 
 export const TransactionsContext = createContext({} as TransactionsContextType);
@@ -28,12 +24,20 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
     setTransactions(transactions);
   }
 
+  async function createTransaction(data: CreateTransactionDTO) {
+    const newTransaction = await transactionService.createTransaction(data);
+
+    setTransactions((state) => [...state, newTransaction]);
+  }
+
   useEffect(() => {
     fetchTransactions();
   }, []);
 
   return (
-    <TransactionsContext.Provider value={{ transactions, fetchTransactions }}>
+    <TransactionsContext.Provider
+      value={{ transactions, fetchTransactions, createTransaction }}
+    >
       {children}
     </TransactionsContext.Provider>
   );
